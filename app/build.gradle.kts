@@ -136,3 +136,22 @@ tasks.register<Copy>("copyApkToBuiltOutputs") {
     rename { "debug-app.apk" }
 }
 
+tasks.register<Copy>("copyApkToVisibleOutputs") {
+    dependsOn("assembleDebug")
+    from(layout.buildDirectory.file("outputs/apk/debug/app-debug.apk"))
+    into(rootProject.file("Built-outputs"))
+    rename { "debug-app.apk" }
+}
+
+tasks.register("checkApkSize") {
+    dependsOn("copyApkToBuiltOutputs", "copyApkToVisibleOutputs")
+    doLast {
+        val apkFile = rootProject.file("Built-outputs/debug-app.apk")
+        if (apkFile.exists()) {
+            println("=== APK Size: " + (apkFile.length() / (1024.0 * 1024.0)) + " MB (" + apkFile.length() + " bytes) ===")
+        } else {
+            println("=== APK File does not exist! ===")
+        }
+    }
+}
+
