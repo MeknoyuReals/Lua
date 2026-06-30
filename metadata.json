@@ -1,0 +1,6 @@
+{
+  "name": "Meknoyu Lua",
+  "description": "A powerful Roblox Lua script obfuscator, deobfuscator, beautifier, and AI-powered script analyzer with local storage history.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
